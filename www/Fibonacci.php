@@ -5,6 +5,8 @@
  * Date: 04.08.2015
  * Time: 19:07
  */
+ 
+ 
     echo '
         <form method= "post">
             <label> Сколько чисел ты хочешь? </label>
