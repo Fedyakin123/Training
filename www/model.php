@@ -18,6 +18,8 @@ function connectTest($host, $user, $password)
 
     $connect = mysql_connect($host, $user, $password);
     mysql_query('USE test');
+    mysql_query("SET NAMES 'utf8'");
+    mysql_query("SET CHARACTER SET 'utf8'");
     return $connect;
 }
 
