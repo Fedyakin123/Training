@@ -5,7 +5,7 @@
             Users Authorization
         </title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="<?php echo SITE_DIR; ?>styles/style.css">
+        <link rel="stylesheet" type="text/css" href="http://fedyaka.ru/styles/style.css">
     </head>
     <body>
     <div class="container">
