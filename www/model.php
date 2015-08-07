@@ -23,7 +23,6 @@ function connectTest($host, $user, $password)
     return $connect;
 }
 
-<<<<<<< HEAD
 function model_insert($table_name, $arr_name)
 {
     $query = ' INSERT INTO '.$table_name.' SET ';
@@ -37,23 +36,3 @@ function model_insert($table_name, $arr_name)
     $query .= $string;
      mysql_query($query) or die(mysql_error());
 }
-
-=======
-function createUser($user)
-{
-$query = '
-    INSERT INTO
-        users
-    SET
-        login = "' . $user['login'] . '",
-        user_password = "' . md5($user['password']) . '",
-        user_name = "' . $user['name'] . '",
-        user_email = "' . $user['email'] . '",
-        create_date = "' . date('Y-m-d H:i:s') . '"';
-
-        mysql_query($query) or die(mysql_error());
-}
-
-
-
->>>>>>> origin/master
