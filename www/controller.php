@@ -5,7 +5,7 @@
  * Date: 04.08.2015
  * Time: 0:38
  */
-require_once(ROOT_DIR . 'view.php');
+
 if(isset($_POST['save_user_btn'])) {
     $_POST['user']['user_password'] = md5(SALT . $_POST['user']['user_password']);
     $_POST['user']['create_date'] = date('Y-m-d H:i:s');
@@ -14,3 +14,6 @@ if(isset($_POST['save_user_btn'])) {
 }
 else {
 }
+
+require_once(ROOT_DIR . 'view.php');
+
