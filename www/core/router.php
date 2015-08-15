@@ -5,6 +5,7 @@
  * Date: 12.08.2015
  * Time: 21:47
  */
+$_GET['route'] = '';
 if($_GET['route']) {
     $array = explode('/', trim($_GET['route'], '/'));
     $controller_name = $array[0] . '_controller';
