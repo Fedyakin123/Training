@@ -5,7 +5,7 @@
  * Date: 12.08.2015
  * Time: 21:47
  */
-if($_GET['route']) {
+if(isset($_GET['route'])) {
     $array = explode('/', trim($_GET['route'], '/'));
     $controller_name = $array[0] . '_controller';
 } else {
@@ -18,7 +18,7 @@ if(file_exists($controller_file)) {
     echo '404';
     exit;
 }
-if($array[1]) {
+if(isset($array[1])) {
     $action = $array[1];
 } else {
     $action = 'default_action';
