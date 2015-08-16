@@ -12,6 +12,3 @@ require_once(ROOT_DIR . 'config.php');
 require_once(ROOT_DIR . 'core' . DS . 'controller.php');
 require_once(ROOT_DIR . 'core' . DS . 'router.php');
 
-
-
-
