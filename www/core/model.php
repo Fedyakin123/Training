@@ -18,8 +18,8 @@ class model
         $this->db->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_TO_STRING);
         $this->db->exec("SET sql_mode = ''");
         $this->db->exec("SET NAMES utf8");
-        echo $dsn .  "<br />";
-        echo $table . "<br />";
+       // echo $dsn .  "<br />";
+       // echo $table . "<br />";
     }
 
     public function insert($data)
@@ -35,28 +35,7 @@ class model
         $query .= $string;
         $stm = $this->db->prepare($query);
         $stm->execute();
-        echo $query;
+      //  echo $query;
 
     }
 }
-
-//class pdo
-//{
-//    public $connect;
-//    public $query;
-//
-//    public function __construct($args) {
-//        //connec
-//        $this->connect = 'connect';
-//    }
-//
-//    public function prepare($query)
-//    {
-//        $this->query = $query;
-//    }
-//
-//    public function execute()
-//    {
-//        mysql_query($this->query, $this->connect);
-//    }
-//}
