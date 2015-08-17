@@ -8,11 +8,12 @@
 class registration_controller extends controller
 {
     function default_action()
-    {
+    {   require_once(ROOT_DIR . 'core' . DS . 'model.php');
         if(isset($_POST['save_user_btn'])) {
             $_POST['user']['user_password'] = md5(SALT . $_POST['user']['user_password']);
             $_POST['user']['create_date'] = date('Y-m-d H:i:s');
             $model = new model('users');
+            $model->__constructor('users');
             $model->insert($_POST['user']);
         }
         $this->view('view');
