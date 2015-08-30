@@ -11,7 +11,7 @@
 <table border="2" cellpadding="5" class="center2">
     <thead>
     <tr>
-        <th id="id_td"> //перенес из прошлой таблички
+      <th id="id_td">  <!-- перенес из прошлой таблички-->
             ID
         </th>
         <th>

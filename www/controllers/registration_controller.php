@@ -8,7 +8,7 @@
 
 class registration_controller extends controller
 {
-    public function default_action()
+    public function default_action() //как сделать,чтобы прошлое набранное не пропадало? или только с помощью JS?
     {
         if(isset($_POST['save_user_btn'])) {
             if (($_POST['user']['login'] and $_POST['user']['user_email'] and $_POST['user']['user_password']) != '' ){

@@ -27,7 +27,7 @@ class user_controller extends controller
         if (isset($_POST['show_user_list_btn'])){ //наверное лишнее
             $user = $model->get_all();
         }
-        $this->render('user',$user);
+        if (isset($user)) $this->render('user',$user); //Добавил,чтобы в боевой версии ПХП не ругался
         $this->view('user' . DS . 'user_view');
     }
 }
