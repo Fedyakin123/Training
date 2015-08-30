@@ -12,3 +12,13 @@ CREATE TABLE users (
   user_email VARCHAR (255) NOT NULL,
   create_date DATETIME NOT NULL
 );
+
+CREATE TABLE user_groups (
+id SERIAL PRIMARY KEY,
+group_name VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE user_groups_users_relations (
+user_id BIGINT UNSIGNED NOT NULL,
+group_id BIGINT UNSIGNED NOT NULL
+);

@@ -7,8 +7,20 @@
  */
 class controller
 {
-    public function view($template)
+    public $vars = [];
+
+    public function render($key, $value)
     {
-        require_once(ROOT_DIR . 'templates' . DS . 'main.php');
+        $this->vars[$key] = $value;
+    }
+
+    public function view($template = '404')
+    {
+        foreach($this->vars as $key => $value) {
+            $$key = $value;
+        }
+        if (file_exists(ROOT_DIR . 'templates' . DS . $template . '.php')) {
+            require_once(ROOT_DIR . 'templates' . DS . 'main.php');
+        }
     }
 }

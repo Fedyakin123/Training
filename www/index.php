@@ -9,5 +9,7 @@ header("Content-Type: text/html; charset=utf-8");
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT_DIR', $_SERVER['DOCUMENT_ROOT'] . DS);
 require_once(ROOT_DIR . 'config.php');
+require_once(ROOT_DIR . 'core' . DS . 'model.php');
 require_once(ROOT_DIR . 'core' . DS . 'controller.php');
 require_once(ROOT_DIR . 'core' . DS . 'router.php');
+

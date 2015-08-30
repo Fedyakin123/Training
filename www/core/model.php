@@ -7,35 +7,75 @@
  */
 class model
 {
-    public $db;
+    public $DBH;
     public $table;
-    public function __constructor($table)
+
+    public function __construct($table)
     {
         $this->table = $table;
         $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME;
-        $this->db = new PDO($dsn, DB_USER, DB_PASSWORD);
-        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->db->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_TO_STRING);
-        $this->db->exec("SET sql_mode = ''");
-        $this->db->exec("SET NAMES utf8");
-       // echo $dsn .  "<br />";
-       // echo $table . "<br />";
+        $this->DBH = new PDO($dsn, DB_USER, DB_PASSWORD);
+        $this->DBH->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->DBH->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_TO_STRING);
+        $this->DBH->exec("SET sql_mode = ''");
+        $this->DBH->exec("SET NAMES utf8");
+    }
+
+    public function get_all()
+    {
+        $STH = $this->DBH->query("SELECT * FROM $this->table ;");
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
+        $res = [];
+        while ($row = $STH->fetch()) {
+            $res[] = $row;
+        }
+        return $res;
     }
 
     public function insert($data)
     {
-        $query = ' INSERT INTO '. $this->table .' SET ';
-        $temp = array();
-        $n = 0;
-        foreach($data as $index => $value){
-            $temp[$n] = '`' . $index . '` = "' . $value . '"';
-            $n ++;
+        $ph = '';
+        $val = '';
+        foreach ($data as $index => $value) {
+            $ph .= "$index,";
+            $val .= ":$index,";
         }
-        $string = implode(', ',$temp);
-        $query .= $string;
-        $stm = $this->db->prepare($query);
-        $stm->execute();
-      //  echo $query;
+        $ph = trim($ph, ',');
+        $val = trim($val, ',');
+        $STH = $this->DBH->prepare("INSERT INTO $this->table ($ph) VALUES ($val)");
+        return $last_id = $STH->execute($data) ? $this->DBH->lastInsertId() : false;
+    }
 
+    public function get_by_field($key,$value)
+    {
+        $ph = "`$key`";
+        $val = ":$key";
+        $STH = $this->DBH->prepare("SELECT * FROM $this->table WHERE $ph = $val");
+        $STH->execute(array(
+            "$key"=>$value
+        ));
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
+        $res = [];
+        while ($row = $STH->fetch()){
+            $res[] = $row;
+        }
+        return $res;
+    }
+    public function get_by_fields($array)
+    {
+        $string = '';
+        foreach ($array as $index => $value){
+            $string .= "$index = :$index AND "; //можно добавить необязательный параметр,чтобы было OR
+        }
+        $string = trim($string,'AND ');
+        $STH = $this->DBH->prepare("SELECT * FROM $this->table WHERE $string");
+        $STH->execute($array);
+        $STH->setFetchMode(PDO::FETCH_ASSOC);
+        $res = [];
+        while ($row = $STH->fetch()){
+            $res[] = $row;
+        }
+        return $res;
     }
 }
+
